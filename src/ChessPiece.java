@@ -1,28 +1,25 @@
 public abstract class ChessPiece {
-    protected String color;
-    protected int x, y;
+    private String color;
+    protected boolean check;
 
-    public ChessPiece(String color, int x, int y) {
+    public ChessPiece(String color) {
         this.color = color;
-        this.x = x;
-        this.y = y;
+        this.check = true;
     }
 
     public String getColor() {
         return color;
     }
 
-    public int getX() {
-        return x;
+    public boolean isCheck() {
+        return check;
     }
 
-    public int getY() {
-        return y;
+    public void setCheck(boolean check) {
+        this.check = check;
     }
 
-    public abstract boolean isValidMove(int newX, int newY, ChessBoard board);
-    
-    public boolean attack(int targetX, int targetY, ChessBoard board) {
-        return isValidMove(targetX, targetY, board);
-    }
+    public abstract boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn);
+
+    public abstract String getSymbol();
 }
